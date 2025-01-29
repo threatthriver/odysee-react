@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M100,0 C100,55.2 55.2,100 0,100 C55.2,100 100,144.8 100,200 C100,144.8 144.8,100 200,100 C144.8,100 100,55.2 100,0" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="0.5" 
+        opacity="0.05"/>
+  <circle cx="100" cy="100" r="50" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-width="0.5" 
+          opacity="0.05"/>
+</svg>

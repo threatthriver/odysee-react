@@ -1,56 +1,176 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect } from 'react'
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { scrollY } = useScroll()
+  
+  const scrollProgress = useSpring(
+    useTransform(scrollY, [0, document.documentElement.scrollHeight - window.innerHeight], [0, 1]),
+    { stiffness: 100, damping: 30, restDelta: 0.001 }
+  )
+
+  const backgroundOpacity = useTransform(
+    scrollY,
+    [0, 400],
+    [1, 0.5]
+  )
+
+  useEffect(() => {
+    scrollProgress.onChange(v => {
+      document.body.style.setProperty('--scroll', v.toString())
+    })
+  }, [scrollProgress])
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white text-gray-900 bg-mandala-light bg-fixed bg-center overflow-x-hidden">
+      {/* Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-secondary-500 origin-left z-50"
+        style={{ scaleX: scrollProgress }}
+      />
+
       {/* Navigation */}
-      <nav className="fixed w-full bg-gray-900/90 backdrop-blur-sm z-50">
+      <motion.nav
+        style={{ backgroundColor: useTransform(scrollY, [0, 200], ['rgba(255,255,255,0)', 'rgba(255,255,255,0.9)']) }}
+        className="fixed w-full backdrop-blur-sm z-40 border-b border-primary-200/20"
+      >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-2xl font-bold text-primary"
+              className="text-3xl font-display font-bold animate-color-shift"
             >
-              Odysee
+              IntellijMind
             </motion.div>
             
             <div className="hidden md:flex space-x-8">
               {['Home', 'About', 'Features', 'Technical', 'Open Source'].map((item) => (
-                <a
+                <motion.a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="font-sans font-medium hover:text-primary-500 transition-all duration-300"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {item}
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-32 pb-20 px-4">
-        <div className="container mx-auto text-center">
-          <motion.h1
+      <section id="home" className="min-h-screen pt-32 pb-20 px-4 relative overflow-hidden flex items-center">
+        <motion.div 
+          className="absolute inset-0 bg-rangoli-pattern"
+          style={{ opacity: backgroundOpacity }}
+        />
+        <div className="container mx-auto text-center relative">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-bold mb-6"
+            className="animate-float"
           >
-            Advancing Indian Language AI
-          </motion.h1>
+            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-primary-600 via-accent-500 to-secondary-500 text-transparent bg-clip-text">
+              Odysee Gen 1
+            </h1>
+            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-secondary-500 via-primary-600 to-accent-500 text-transparent bg-clip-text">
+              Language AI
+            </h1>
+          </motion.div>
+          
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto"
+            className="text-xl md:text-2xl font-handwriting mb-8 max-w-3xl mx-auto text-spice-cinnamon"
           >
-            Empowering India's diverse linguistic landscape through advanced AI technology
+            Empowering communication across India's diverse linguistic landscape through cutting-edge AI technology.
           </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-6"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-lg font-sans font-medium shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30 transition-all duration-300"
+            >
+              Get Started
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-white text-primary-500 rounded-lg font-sans font-medium shadow-lg hover:shadow-xl transition-all duration-300 border border-primary-100"
+            >
+              Learn More
+            </motion.button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 px-4 bg-white/50 backdrop-blur-sm">
+        <div className="container mx-auto">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-display font-bold text-center mb-16 animate-color-shift"
+          >
+            Key Features
+          </motion.h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Multi-Language Support",
+                description: "Support for all major Indian languages and dialects",
+                icon: "🗣️",
+                color: "from-primary-500 to-primary-600"
+              },
+              {
+                title: "Real-time Translation",
+                description: "Instant translation between Indian languages",
+                icon: "⚡",
+                color: "from-accent-500 to-accent-600"
+              },
+              {
+                title: "Cultural Context",
+                description: "AI that understands Indian cultural nuances",
+                icon: "🎭",
+                color: "from-secondary-500 to-secondary-600"
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ 
+                  duration: 0.5,
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ y: -5 }}
+                className="p-8 rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500"
+              >
+                <div className="text-5xl mb-6">{feature.icon}</div>
+                <h3 className="text-2xl font-display font-bold mb-4 bg-gradient-to-r text-transparent bg-clip-text animate-color-shift">
+                  {feature.title}
+                </h3>
+                <p className="text-lg font-handwriting text-gray-600">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -91,52 +211,6 @@ function App() {
               >
                 <h3 className="text-xl font-semibold mb-4">{card.title}</h3>
                 <p className="text-gray-400">{card.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-20">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-12"
-          >
-            Key Features
-          </motion.h2>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                title: 'High-Quality Text Generation',
-                description: 'Fluent and contextually relevant text in Indian languages'
-              },
-              {
-                title: 'Accurate Translation',
-                description: 'Seamless translation between Indian languages and English'
-              },
-              {
-                title: 'Question Answering',
-                description: 'Insightful answers to complex queries'
-              },
-              {
-                title: 'Concise Summarization',
-                description: 'Efficient generation of text summaries'
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-gray-700/50 to-gray-800/50 p-8 rounded-lg"
-              >
-                <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -211,7 +285,7 @@ function App() {
       {/* Footer */}
       <footer className="bg-gray-900 py-8">
         <div className="container mx-auto px-4 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Odysee. Advancing Indian Language AI.</p>
+          <p>&copy; {new Date().getFullYear()} IntellijMind. Advancing Indian Language AI.</p>
         </div>
       </footer>
     </div>
