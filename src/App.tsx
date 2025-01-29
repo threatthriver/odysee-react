@@ -4,6 +4,7 @@ import Documentation from './pages/Documentation'
 import Blog from './pages/Blog'
 import Contact from './pages/Contact'
 import Story from './pages/Story'
+import ComingSoon from './pages/ComingSoon'
 
 const App = () => {
   return (
@@ -240,10 +241,12 @@ const App = () => {
               </footer>
             </div>
           } />
-          <Route path="documentation" element={<Documentation />} />
           <Route path="blog" element={<Blog />} />
+          <Route path="documentation" element={<Documentation />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="story" element={<Story />} />
+          <Route path="api" element={<ComingSoon />} />
+          <Route path="pricing" element={<ComingSoon />} />
+          <Route path="careers" element={<ComingSoon />} />
         </Route>
       </Routes>
     </Router>
