@@ -3,7 +3,6 @@ import Layout from './components/Layout'
 import Documentation from './pages/Documentation'
 import Blog from './pages/Blog'
 import Contact from './pages/Contact'
-import Home from './pages/Home'
 import Story from './pages/Story'
 
 const App = () => {
