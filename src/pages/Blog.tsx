@@ -1,7 +1,46 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
+interface BlogPost {
+  title: string
+  date: string
+  author: string
+  excerpt: string
+  tag: string
+}
+
 const Blog = () => {
+  const blogPosts: BlogPost[] = [
+    {
+      title: 'Building India\'s Future in AI',
+      date: 'January 29, 2025',
+      author: 'Aniket Kumar',
+      excerpt: 'In the fast-evolving world of artificial intelligence, where nations are competing to lead the AI revolution, I am determined to make a difference. As a passionate AI enthusiast, I am not just learning about artificial intelligence—I am actively working on building a large language model (LLM).',
+      tag: 'Vision'
+    },
+    {
+      title: 'Introducing Odysee Gen 1',
+      date: 'January 29, 2025',
+      author: 'IntellijMind Team',
+      excerpt: 'Today, we're excited to announce the release of Odysee Gen 1, our state-of-the-art language model designed specifically for Indian languages.',
+      tag: 'Announcement'
+    },
+    {
+      title: 'The Technology Behind Odysee',
+      date: 'January 28, 2025',
+      author: 'Tech Team',
+      excerpt: 'Deep dive into the architecture and innovations that power Odysee Gen 1, including our unique approach to handling Indian languages.',
+      tag: 'Technical'
+    },
+    {
+      title: 'Contributing to Odysee',
+      date: 'January 27, 2025',
+      author: 'Open Source Team',
+      excerpt: 'Learn how you can contribute to the development of Odysee and help shape the future of Indian language AI.',
+      tag: 'Community'
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-black text-white pt-24">
       {/* Hero Section */}
@@ -32,36 +71,7 @@ const Blog = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid gap-12">
-              {[
-                {
-                  title: 'Building India\'s Future in AI',
-                  date: 'January 29, 2025',
-                  author: 'Aniket Kumar',
-                  excerpt: 'In the fast-evolving world of artificial intelligence, where nations are competing to lead the AI revolution, I am determined to make a difference. As a passionate AI enthusiast, I am not just learning about artificial intelligence—I am actively working on building a large language model (LLM).',
-                  tag: 'Vision'
-                },
-                {
-                  title: 'Introducing Odysee Gen 1',
-                  date: 'January 29, 2025',
-                  author: 'IntellijMind Team',
-                  excerpt: 'Today, we're excited to announce the release of Odysee Gen 1, our state-of-the-art language model designed specifically for Indian languages.',
-                  tag: 'Announcement'
-                },
-                {
-                  title: 'The Technology Behind Odysee',
-                  date: 'January 28, 2025',
-                  author: 'Tech Team',
-                  excerpt: 'Deep dive into the architecture and innovations that power Odysee Gen 1, including our unique approach to handling Indian languages.',
-                  tag: 'Technical'
-                },
-                {
-                  title: 'Contributing to Odysee',
-                  date: 'January 27, 2025',
-                  author: 'Open Source Team',
-                  excerpt: 'Learn how you can contribute to the development of Odysee and help shape the future of Indian language AI.',
-                  tag: 'Community'
-                }
-              ].map((post) => (
+              {blogPosts.map((post) => (
                 <motion.article
                   key={post.title}
                   initial={{ opacity: 0, y: 20 }}

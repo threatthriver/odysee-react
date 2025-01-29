@@ -1,8 +1,7 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 
 const Home = () => {
   const { scrollY } = useScroll()
-  const scrollProgress = useTransform(scrollY, [0, document.documentElement.scrollHeight - window.innerHeight], [0, 1])
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
