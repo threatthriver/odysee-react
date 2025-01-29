@@ -1,5 +1,11 @@
 import { useEffect } from 'react'
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Documentation from './pages/Documentation'
+import Blog from './pages/Blog'
+import Contact from './pages/Contact'
+import Home from './pages/Home'
 
 function App() {
   const { scrollY } = useScroll()
@@ -22,273 +28,283 @@ function App() {
   }, [scrollProgress])
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white text-gray-900 bg-mandala-light bg-fixed bg-center overflow-x-hidden">
-      {/* Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-secondary-500 origin-left z-50"
-        style={{ scaleX: scrollProgress }}
-      />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={
+            <div className="min-h-screen bg-black text-white overflow-x-hidden">
+              {/* Progress Bar */}
+              <motion.div
+                className="fixed top-0 left-0 right-0 h-0.5 bg-white/20 z-50"
+                style={{ scaleX: scrollProgress }}
+              />
 
-      {/* Navigation */}
-      <motion.nav
-        style={{ backgroundColor: useTransform(scrollY, [0, 200], ['rgba(255,255,255,0)', 'rgba(255,255,255,0.9)']) }}
-        className="fixed w-full backdrop-blur-sm z-40 border-b border-primary-200/20"
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-3xl font-display font-bold animate-color-shift"
-            >
-              IntellijMind
-            </motion.div>
-            
-            <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Features', 'Technical', 'Open Source'].map((item) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="font-sans font-medium hover:text-primary-500 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {item}
-                </motion.a>
-              ))}
+              {/* Navigation */}
+              <motion.nav
+                style={{ backgroundColor: useTransform(scrollY, [0, 200], ['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)']) }}
+                className="fixed w-full backdrop-blur-lg z-40 border-b border-white/10"
+              >
+                <div className="container mx-auto px-4">
+                  <div className="flex items-center justify-between h-16">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="text-2xl font-display font-bold"
+                    >
+                      IntellijMind
+                    </motion.div>
+                    
+                    <div className="hidden md:flex space-x-8">
+                      {['Vision', 'Features', 'Technical', 'Open Source'].map((item) => (
+                        <motion.a
+                          key={item}
+                          href={`#${item.toLowerCase()}`}
+                          className="font-sans text-sm font-medium text-white/80 hover:text-white transition-all duration-300"
+                          whileHover={{ y: -1 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          {item}
+                        </motion.a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.nav>
+
+              {/* Hero Section */}
+              <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
+                <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+                <div className="container mx-auto px-4 py-32 text-center relative">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="max-w-4xl mx-auto"
+                  >
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-lg font-medium text-primary-400 mb-6"
+                    >
+                      Introducing
+                    </motion.p>
+                    <h1 className="text-6xl md:text-8xl font-display font-bold mb-8 bg-gradient-to-r from-white via-primary-400 to-accent-400 text-transparent bg-clip-text">
+                      Odysee Gen 1
+                    </h1>
+                    <p className="text-xl md:text-2xl text-white/60 mb-12 max-w-2xl mx-auto">
+                      The next generation of Indian Language AI, designed to understand and preserve our cultural heritage.
+                    </p>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="flex flex-wrap justify-center gap-6"
+                    >
+                      <motion.button
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="px-8 py-4 bg-white text-black rounded-full font-medium text-sm hover:bg-white/90 transition-all duration-300"
+                      >
+                        Learn more
+                      </motion.button>
+                      <motion.button
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="px-8 py-4 bg-white/10 text-white rounded-full font-medium text-sm hover:bg-white/20 transition-all duration-300"
+                      >
+                        View on GitHub
+                      </motion.button>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </section>
+
+              {/* Vision Section */}
+              <section id="vision" className="py-32 bg-black relative overflow-hidden">
+                <div className="container mx-auto px-4">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="max-w-4xl mx-auto text-center mb-16"
+                  >
+                    <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
+                      Our Vision
+                    </h2>
+                    <p className="text-xl text-white/60">
+                      Establishing India as a global leader in Language Model development, creating AI that truly understands and respects our diverse cultural heritage.
+                    </p>
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-3 gap-8">
+                    {[
+                      {
+                        title: "The Gap",
+                        description: "India's contribution to LLM development lags behind global advancements.",
+                        icon: "🌏"
+                      },
+                      {
+                        title: "Cultural Relevance",
+                        description: "Current LLMs struggle with Indian languages and cultural nuances.",
+                        icon: "🎭"
+                      },
+                      {
+                        title: "The Solution",
+                        description: "AI tools that are culturally attuned to India's diverse heritage.",
+                        icon: "✨"
+                      }
+                    ].map((item, index) => (
+                      <motion.div
+                        key={item.title}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.2 }}
+                        className="p-8 rounded-3xl bg-white/5 backdrop-blur-lg hover:bg-white/10 transition-all duration-500"
+                      >
+                        <div className="text-4xl mb-6">{item.icon}</div>
+                        <h3 className="text-xl font-display font-bold mb-4 text-white">
+                          {item.title}
+                        </h3>
+                        <p className="text-white/60">
+                          {item.description}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Technical Innovation Section */}
+              <section id="technical" className="py-32 bg-gradient-to-b from-black to-gray-900">
+                <div className="container mx-auto px-4">
+                  <motion.h2
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="text-4xl md:text-5xl font-display font-bold text-center mb-16"
+                  >
+                    Technical Innovation
+                  </motion.h2>
+
+                  <div className="grid md:grid-cols-3 gap-12">
+                    {[
+                      {
+                        title: "Data Ingestion",
+                        features: [
+                          "Advanced Fineweb Dataset",
+                          "Multi-language Pipeline",
+                          "Intelligent Cleaning"
+                        ],
+                        icon: "📊"
+                      },
+                      {
+                        title: "Model Training",
+                        features: [
+                          "MoE Architecture",
+                          "Cerebras WSE",
+                          "Parameter Optimization"
+                        ],
+                        icon: "🧠"
+                      },
+                      {
+                        title: "Deployment",
+                        features: [
+                          "Efficient Storage",
+                          "Optimized API Access",
+                          "Load Balancing"
+                        ],
+                        icon: "⚡"
+                      }
+                    ].map((item, index) => (
+                      <motion.div
+                        key={item.title}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.2 }}
+                        className="p-8 rounded-3xl bg-white/5 backdrop-blur-lg hover:bg-white/10 transition-all duration-500"
+                      >
+                        <div className="text-4xl mb-6">{item.icon}</div>
+                        <h3 className="text-xl font-display font-bold mb-6">
+                          {item.title}
+                        </h3>
+                        <ul className="space-y-4">
+                          {item.features.map((feature) => (
+                            <li key={feature} className="text-white/60 flex items-center space-x-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary-400" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Open Source Section */}
+              <section id="opensource" className="py-32 bg-black relative">
+                <div className="container mx-auto px-4">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="max-w-4xl mx-auto text-center"
+                  >
+                    <h2 className="text-4xl md:text-5xl font-display font-bold mb-8">
+                      Open Source
+                    </h2>
+                    <p className="text-xl text-white/60 mb-12">
+                      We believe in the power of community collaboration. All our models, code, datasets, and documentation are open source.
+                    </p>
+                    <motion.button
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="px-8 py-4 bg-white text-black rounded-full font-medium text-sm hover:bg-white/90 transition-all duration-300"
+                    >
+                      Explore GitHub
+                    </motion.button>
+                  </motion.div>
+                </div>
+              </section>
+
+              {/* Footer */}
+              <footer className="py-12 bg-black border-t border-white/10">
+                <div className="container mx-auto px-4">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-display font-bold mb-4">
+                      IntellijMind
+                    </h3>
+                    <p className="text-white/60 mb-8">
+                      Advancing Indian Language AI
+                    </p>
+                    <div className="flex justify-center space-x-6 mb-8">
+                      {['GitHub', 'Documentation', 'Blog', 'Contact'].map((item) => (
+                        <motion.a
+                          key={item}
+                          href={`#${item.toLowerCase()}`}
+                          whileHover={{ y: -1 }}
+                          className="text-white/60 hover:text-white text-sm transition-colors"
+                        >
+                          {item}
+                        </motion.a>
+                      ))}
+                    </div>
+                    <p className="text-sm text-white/40">
+                      &copy; {new Date().getFullYear()} IntellijMind. All rights reserved.
+                    </p>
+                  </div>
+                </div>
+              </footer>
             </div>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen pt-32 pb-20 px-4 relative overflow-hidden flex items-center">
-        <motion.div 
-          className="absolute inset-0 bg-rangoli-pattern"
-          style={{ opacity: backgroundOpacity }}
-        />
-        <div className="container mx-auto text-center relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="animate-float"
-          >
-            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-primary-600 via-accent-500 to-secondary-500 text-transparent bg-clip-text">
-              Odysee Gen 1
-            </h1>
-            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-secondary-500 via-primary-600 to-accent-500 text-transparent bg-clip-text">
-              Language AI
-            </h1>
-          </motion.div>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl md:text-2xl font-handwriting mb-8 max-w-3xl mx-auto text-spice-cinnamon"
-          >
-            Empowering communication across India's diverse linguistic landscape through cutting-edge AI technology.
-          </motion.p>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-6"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-lg font-sans font-medium shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30 transition-all duration-300"
-            >
-              Get Started
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white text-primary-500 rounded-lg font-sans font-medium shadow-lg hover:shadow-xl transition-all duration-300 border border-primary-100"
-            >
-              Learn More
-            </motion.button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-20 px-4 bg-white/50 backdrop-blur-sm">
-        <div className="container mx-auto">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-display font-bold text-center mb-16 animate-color-shift"
-          >
-            Key Features
-          </motion.h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Multi-Language Support",
-                description: "Support for all major Indian languages and dialects",
-                icon: "🗣️",
-                color: "from-primary-500 to-primary-600"
-              },
-              {
-                title: "Real-time Translation",
-                description: "Instant translation between Indian languages",
-                icon: "⚡",
-                color: "from-accent-500 to-accent-600"
-              },
-              {
-                title: "Cultural Context",
-                description: "AI that understands Indian cultural nuances",
-                icon: "🎭",
-                color: "from-secondary-500 to-secondary-600"
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ 
-                  duration: 0.5,
-                  delay: index * 0.2,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                whileHover={{ y: -5 }}
-                className="p-8 rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500"
-              >
-                <div className="text-5xl mb-6">{feature.icon}</div>
-                <h3 className="text-2xl font-display font-bold mb-4 bg-gradient-to-r text-transparent bg-clip-text animate-color-shift">
-                  {feature.title}
-                </h3>
-                <p className="text-lg font-handwriting text-gray-600">
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-20 bg-gray-800/50">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-12"
-          >
-            Vision & Mission
-          </motion.h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'The Gap',
-                description: "India's contribution to LLM development lags behind global advancements"
-              },
-              {
-                title: 'Cultural Relevance',
-                description: 'Existing LLMs struggle with Indian languages and cultural nuances'
-              },
-              {
-                title: 'The Need',
-                description: 'Requirement for culturally attuned AI tools'
-              }
-            ].map((card, index) => (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="bg-gray-700/50 p-6 rounded-lg hover:bg-gray-700 transition-colors"
-              >
-                <h3 className="text-xl font-semibold mb-4">{card.title}</h3>
-                <p className="text-gray-400">{card.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Technical Section */}
-      <section id="technical" className="py-20 bg-gray-800/50">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-12"
-          >
-            Technical Innovation
-          </motion.h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Data Ingestion',
-                description: 'Fineweb Dataset Processing'
-              },
-              {
-                title: 'Model Training',
-                description: 'MoE Architecture with Cerebras WSE'
-              },
-              {
-                title: 'Deployment',
-                description: 'Efficient Storage & API Access'
-              }
-            ].map((tech, index) => (
-              <motion.div
-                key={tech.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="bg-gray-700/50 p-6 rounded-lg text-center"
-              >
-                <h3 className="text-xl font-semibold mb-4">{tech.title}</h3>
-                <p className="text-gray-400">{tech.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Open Source Section */}
-      <section id="opensource" className="py-20">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-8"
-          >
-            Open Source Commitment
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-gray-400 max-w-2xl mx-auto"
-          >
-            All models, code, datasets, and documentation will be released under an open-source license to facilitate community collaboration.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 py-8">
-        <div className="container mx-auto px-4 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} IntellijMind. Advancing Indian Language AI.</p>
-        </div>
-      </footer>
-    </div>
+          } />
+          <Route path="documentation" element={<Documentation />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </Router>
   )
 }
 
