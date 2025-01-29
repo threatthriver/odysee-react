@@ -13,31 +13,31 @@ interface BlogPost {
 const Blog: React.FC = () => {
   const blogPosts: BlogPost[] = [
     {
-      title: "Building India's Future in AI",
+      title: 'Getting Started with Odysee',
       date: 'January 29, 2025',
-      author: 'Aniket Kumar',
-      excerpt: 'In the fast-evolving world of artificial intelligence, where nations are competing to lead the AI revolution, I am determined to make a difference. As a passionate AI enthusiast, I am not just learning about artificial intelligence—I am actively working on building a large language model (LLM).',
-      tag: 'Vision'
+      author: 'Documentation Team',
+      excerpt: 'Learn how to get started with Odysee, our open-source video platform. This guide covers the basics of creating an account, uploading content, and engaging with the community.',
+      tag: 'Guide'
     },
     {
-      title: 'Introducing Odysee Gen 1',
-      date: 'January 29, 2025',
-      author: 'IntellijMind Team',
-      excerpt: 'Today, we are excited to announce the release of Odysee Gen 1, our state-of-the-art language model designed specifically for Indian languages.',
+      title: 'Community Guidelines Update',
+      date: 'January 28, 2025',
+      author: 'Moderation Team',
+      excerpt: 'We have updated our community guidelines to ensure a safe and welcoming environment for all users. Read about the important changes and how they affect content creators.',
       tag: 'Announcement'
     },
     {
-      title: 'The Technology Behind Odysee',
-      date: 'January 28, 2025',
-      author: 'Tech Team',
-      excerpt: 'Deep dive into the architecture and innovations that power Odysee Gen 1, including our unique approach to handling Indian languages.',
-      tag: 'Technical'
+      title: 'New Features: Enhanced Search and Discovery',
+      date: 'January 27, 2025',
+      author: 'Product Team',
+      excerpt: 'Discover our latest features including improved search algorithms, better content recommendations, and new filtering options to help you find the content you love.',
+      tag: 'Features'
     },
     {
-      title: 'Contributing to Odysee',
-      date: 'January 27, 2025',
-      author: 'Open Source Team',
-      excerpt: 'Learn how you can contribute to the development of Odysee and help shape the future of Indian language AI.',
+      title: 'Creator Spotlight: January 2025',
+      date: 'January 26, 2025',
+      author: 'Content Team',
+      excerpt: 'Meet the amazing content creators who are making waves on Odysee this month. Learn about their journey, creative process, and favorite moments on the platform.',
       tag: 'Community'
     }
   ]
