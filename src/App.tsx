@@ -6,6 +6,7 @@ import Documentation from './pages/Documentation'
 import Blog from './pages/Blog'
 import Contact from './pages/Contact'
 import Home from './pages/Home'
+import Story from './pages/Story'
 
 function App() {
   const { scrollY } = useScroll()
@@ -302,6 +303,7 @@ function App() {
           <Route path="documentation" element={<Documentation />} />
           <Route path="blog" element={<Blog />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="story" element={<Story />} />
         </Route>
       </Routes>
     </Router>

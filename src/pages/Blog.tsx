@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const Blog = () => {
   return (
@@ -32,6 +33,13 @@ const Blog = () => {
           <div className="max-w-4xl mx-auto">
             <div className="grid gap-12">
               {[
+                {
+                  title: 'Building India\'s Future in AI',
+                  date: 'January 29, 2025',
+                  author: 'Aniket Kumar',
+                  excerpt: 'In the fast-evolving world of artificial intelligence, where nations are competing to lead the AI revolution, I am determined to make a difference. As a passionate AI enthusiast, I am not just learning about artificial intelligence—I am actively working on building a large language model (LLM).',
+                  tag: 'Vision'
+                },
                 {
                   title: 'Introducing Odysee Gen 1',
                   date: 'January 29, 2025',
@@ -80,7 +88,11 @@ const Blog = () => {
                       whileTap={{ scale: 0.98 }}
                       className="text-primary-400 hover:text-primary-300 transition-colors"
                     >
-                      Read more →
+                      {post.title === 'Building India\'s Future in AI' ? (
+                        <Link to="/story">Read more →</Link>
+                      ) : (
+                        'Read more →'
+                      )}
                     </motion.button>
                   </div>
                 </motion.article>
