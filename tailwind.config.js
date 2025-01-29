@@ -9,28 +9,35 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#FFF7ED',
-          100: '#FFE4CC',
-          200: '#FFD1A8',
-          300: '#FFB777',
-          400: '#FF9D47',
-          500: '#FF8516', // Saffron
-          600: '#E66C00',
-          700: '#B35300',
-          800: '#803C00',
-          900: '#4D2400',
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
         },
         secondary: {
-          50: '#F0FFF4',
-          100: '#D1FFE0',
-          200: '#A3FFCC',
-          300: '#75FFB8',
-          400: '#47FFA3',
-          500: '#19FF8F', // Indian Green
-          600: '#00E673',
-          700: '#00B359',
-          800: '#008040',
-          900: '#004D26',
+          50: '#fdf4ff',
+          100: '#fae8ff',
+          200: '#f5d0fe',
+          300: '#f0abfc',
+          400: '#e879f9',
+          500: '#d946ef',
+          600: '#c026d3',
+          700: '#a21caf',
+          800: '#86198f',
+          900: '#701a75',
+        },
+        dark: {
+          100: '#1E1E1E',
+          200: '#2D2D2D',
+          300: '#3D3D3D',
+          400: '#4D4D4D',
+          500: '#5D5D5D',
         },
         accent: {
           50: '#FFF0F7',
@@ -52,8 +59,8 @@ export default {
         }
       },
       fontFamily: {
-        display: ['Yatra One', 'cursive'],
-        sans: ['Mukta', 'sans-serif'],
+        display: ['Poppins', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
         handwriting: ['Kalam', 'cursive']
       },
       backgroundImage: {
@@ -61,21 +68,39 @@ export default {
         'mandala-light': "url('/patterns/mandala-light.svg')",
       },
       animation: {
+        'gradient': 'gradient 8s linear infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'color-shift': 'color-shift 8s ease-in-out infinite',
-        'float': 'float 6s ease-in-out infinite',
       },
       keyframes: {
+        gradient: {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
         'color-shift': {
           '0%, 100%': { color: '#FF8516' },
           '33%': { color: '#19FF8F' },
           '66%': { color: '#FF47A3' },
-        },
-        'float': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
         }
-      }
+      },
+      backdropBlur: {
+        xs: '2px',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+  ],
 }
