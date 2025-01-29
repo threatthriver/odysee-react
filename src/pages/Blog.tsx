@@ -13,32 +13,32 @@ interface BlogPost {
 const Blog: React.FC = () => {
   const blogPosts: BlogPost[] = [
     {
-      title: 'Getting Started with Odysee',
+      title: 'Exploring Mixture of Experts (MoE) Architecture',
       date: 'January 29, 2025',
-      author: 'Documentation Team',
-      excerpt: 'Learn how to get started with Odysee, our open-source video platform. This guide covers the basics of creating an account, uploading content, and engaging with the community.',
-      tag: 'Guide'
+      author: 'Research Team',
+      excerpt: 'Deep dive into how Mixture of Experts (MoE) layers enable efficient scaling of language models through conditional computation. Learn how MoE architecture increases model capacity while maintaining computational efficiency through sparse parameter activation.',
+      tag: 'Technical'
     },
     {
-      title: 'Community Guidelines Update',
+      title: 'Web-Scale Dataset Processing Pipeline',
       date: 'January 28, 2025',
-      author: 'Moderation Team',
-      excerpt: 'We have updated our community guidelines to ensure a safe and welcoming environment for all users. Read about the important changes and how they affect content creators.',
-      tag: 'Announcement'
+      author: 'Data Science Team',
+      excerpt: 'Understanding the challenges of building high-quality training datasets at web scale. Exploring data curation, semantic deduplication, and quality filtering techniques for creating robust language model training data.',
+      tag: 'Research'
     },
     {
-      title: 'New Features: Enhanced Search and Discovery',
+      title: 'Scaling Laws and Compute Efficiency',
       date: 'January 27, 2025',
-      author: 'Product Team',
-      excerpt: 'Discover our latest features including improved search algorithms, better content recommendations, and new filtering options to help you find the content you love.',
-      tag: 'Features'
+      author: 'Engineering Team',
+      excerpt: 'Analysis of how MoE models compare to dense architectures in terms of compute efficiency. At modest training budgets, MoE models can match dense model performance using approximately 4 times less compute.',
+      tag: 'Technical'
     },
     {
-      title: 'Creator Spotlight: January 2025',
+      title: 'Challenges in Multi-Domain Learning',
       date: 'January 26, 2025',
-      author: 'Content Team',
-      excerpt: 'Meet the amazing content creators who are making waves on Odysee this month. Learn about their journey, creative process, and favorite moments on the platform.',
-      tag: 'Community'
+      author: 'ML Research Team',
+      excerpt: 'Investigating how model performance varies across different domains and tasks. Our research shows that MoE and dense models exhibit different generalization patterns worthy of further study.',
+      tag: 'Research'
     }
   ]
 
