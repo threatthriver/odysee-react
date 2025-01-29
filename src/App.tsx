@@ -112,7 +112,7 @@ const App = () => {
                         description: "AI tools that are culturally attuned to India's diverse heritage.",
                         icon: "✨"
                       }
-                    ].map((item, index) => (
+                    ].map((item) => (
                       <div
                         key={item.title}
                         className="p-8 rounded-3xl bg-white/5 backdrop-blur-lg hover:bg-white/10 transition-all duration-500"
@@ -168,7 +168,7 @@ const App = () => {
                         ],
                         icon: "⚡"
                       }
-                    ].map((item, index) => (
+                    ].map((item) => (
                       <div
                         key={item.title}
                         className="p-8 rounded-3xl bg-white/5 backdrop-blur-lg hover:bg-white/10 transition-all duration-500"

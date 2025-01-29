@@ -1,8 +1,6 @@
-import { motion, useScroll } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const Home = () => {
-  const { scrollY } = useScroll()
-
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Hero Section */}

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import React from 'react'
 
 interface BlogPost {
   title: string
@@ -9,10 +10,10 @@ interface BlogPost {
   tag: string
 }
 
-const Blog = () => {
+const Blog: React.FC = () => {
   const blogPosts: BlogPost[] = [
     {
-      title: 'Building India\'s Future in AI',
+      title: "Building India's Future in AI",
       date: 'January 29, 2025',
       author: 'Aniket Kumar',
       excerpt: 'In the fast-evolving world of artificial intelligence, where nations are competing to lead the AI revolution, I am determined to make a difference. As a passionate AI enthusiast, I am not just learning about artificial intelligence—I am actively working on building a large language model (LLM).',
@@ -22,7 +23,7 @@ const Blog = () => {
       title: 'Introducing Odysee Gen 1',
       date: 'January 29, 2025',
       author: 'IntellijMind Team',
-      excerpt: 'Today, we're excited to announce the release of Odysee Gen 1, our state-of-the-art language model designed specifically for Indian languages.',
+      excerpt: 'Today, we are excited to announce the release of Odysee Gen 1, our state-of-the-art language model designed specifically for Indian languages.',
       tag: 'Announcement'
     },
     {
@@ -50,64 +51,48 @@ const Blog = () => {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-display font-bold mb-6"
+              transition={{ duration: 0.5 }}
+              className="text-4xl md:text-5xl font-bold mb-6"
             >
-              Blog
+              Blog & Updates
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-xl text-white/60"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-xl text-gray-300"
             >
-              Latest updates, articles, and insights from the IntellijMind team
+              Stay updated with the latest developments in Indian language AI
             </motion.p>
           </div>
         </div>
       </section>
 
-      {/* Blog Posts */}
-      <section className="py-20">
+      {/* Blog Posts Grid */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid gap-12">
-              {blogPosts.map((post) => (
-                <motion.article
-                  key={post.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="px-3 py-1 rounded-full bg-primary-400/10 text-primary-400 text-sm">
-                      {post.tag}
-                    </span>
-                    <span className="text-white/40 text-sm">{post.date}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogPosts.map((post, index) => (
+              <motion.article
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+              >
+                <div className="p-6">
+                  <span className="inline-block px-3 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full mb-4">
+                    {post.tag}
+                  </span>
+                  <h2 className="text-xl font-bold mb-3">{post.title}</h2>
+                  <p className="text-gray-400 mb-4">{post.excerpt}</p>
+                  <div className="flex items-center justify-between text-sm text-gray-500">
+                    <span>{post.author}</span>
+                    <span>{post.date}</span>
                   </div>
-                  <h2 className="text-2xl font-display font-bold mb-4">
-                    {post.title}
-                  </h2>
-                  <p className="text-white/60 mb-6">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/40 text-sm">{post.author}</span>
-                    <motion.button
-                      whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="text-primary-400 hover:text-primary-300 transition-colors"
-                    >
-                      {post.title === 'Building India\'s Future in AI' ? (
-                        <Link to="/story">Read more →</Link>
-                      ) : (
-                        'Read more →'
-                      )}
-                    </motion.button>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
+                </div>
+              </motion.article>
+            ))}
           </div>
         </div>
       </section>
