@@ -1,6 +1,18 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link, Outlet } from 'react-router-dom'
 
+interface CompanyLink {
+  name: string;
+  path: string;
+}
+
+const companyLinks: CompanyLink[] = [
+  { name: 'About', path: '/about' },
+  { name: 'Careers', path: '/careers' },
+  { name: 'Press', path: '/press' },
+  { name: 'Blog', path: '/blog' }
+];
+
 const Layout = () => {
   const { scrollY } = useScroll()
 
@@ -85,26 +97,13 @@ const Layout = () => {
                 Company
               </h3>
               <ul className="space-y-4">
-                <li>
-                  <Link to="/about" className="text-gray-400 hover:text-white transition-colors">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/blog" className="text-gray-400 hover:text-white transition-colors">
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/careers" className="text-gray-400 hover:text-white transition-colors">
-                    Careers
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">
-                    Contact
-                  </Link>
-                </li>
+                {companyLinks.map((item: CompanyLink) => (
+                  <li key={item.name}>
+                    <Link to={item.path} className="text-gray-400 hover:text-white transition-colors">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 

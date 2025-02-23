@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useMemo } from 'react'
 import Layout from './components/Layout'
 import Documentation from './pages/Documentation'
 import Blog from './pages/Blog'
@@ -6,6 +7,67 @@ import Contact from './pages/Contact'
 import ComingSoon from './pages/ComingSoon'
 
 const App = () => {
+  const navigationItems = useMemo(() => [
+    'Vision',
+    'Features',
+    'Technical',
+    'Open Source'
+  ], [])
+
+  const visionCards = useMemo(() => [
+    {
+      title: "The Gap",
+      description: "India's contribution to LLM development lags behind global advancements.",
+      icon: "🌏"
+    },
+    {
+      title: "Cultural Relevance",
+      description: "Current LLMs struggle with Indian languages and cultural nuances.",
+      icon: "🎭"
+    },
+    {
+      title: "The Solution",
+      description: "AI tools that are culturally attuned to India's diverse heritage.",
+      icon: "✨"
+    }
+  ], [])
+
+  const technicalCards = useMemo(() => [
+    {
+      title: "Data Ingestion",
+      features: [
+        "Advanced Fineweb Dataset",
+        "Multi-language Pipeline",
+        "Intelligent Cleaning"
+      ],
+      icon: "📊"
+    },
+    {
+      title: "Model Training",
+      features: [
+        "MoE Architecture",
+        "Cerebras WSE",
+        "Parameter Optimization"
+      ],
+      icon: "🧠"
+    },
+    {
+      title: "Deployment",
+      features: [
+        "Efficient Storage",
+        "Optimized API Access",
+        "Load Balancing"
+      ],
+      icon: "⚡"
+    }
+  ], [])
+
+  const footerLinks = useMemo(() => [
+    'GitHub',
+    'Documentation',
+    'Blog',
+    'Contact'
+  ], [])
   return (
     <Router>
       <Routes>
@@ -30,7 +92,7 @@ const App = () => {
                     </div>
                     
                     <div className="hidden md:flex space-x-8">
-                      {['Vision', 'Features', 'Technical', 'Open Source'].map((item) => (
+                      {navigationItems.map((item) => (
                         <a
                           key={item}
                           href={`#${item.toLowerCase()}`}
@@ -95,23 +157,7 @@ const App = () => {
                   </div>
 
                   <div className="grid md:grid-cols-3 gap-8">
-                    {[
-                      {
-                        title: "The Gap",
-                        description: "India's contribution to LLM development lags behind global advancements.",
-                        icon: "🌏"
-                      },
-                      {
-                        title: "Cultural Relevance",
-                        description: "Current LLMs struggle with Indian languages and cultural nuances.",
-                        icon: "🎭"
-                      },
-                      {
-                        title: "The Solution",
-                        description: "AI tools that are culturally attuned to India's diverse heritage.",
-                        icon: "✨"
-                      }
-                    ].map((item) => (
+                    {visionCards.map((item) => (
                       <div
                         key={item.title}
                         className="p-8 rounded-3xl bg-white/5 backdrop-blur-lg hover:bg-white/10 transition-all duration-500"
@@ -139,35 +185,7 @@ const App = () => {
                   </h2>
 
                   <div className="grid md:grid-cols-3 gap-12">
-                    {[
-                      {
-                        title: "Data Ingestion",
-                        features: [
-                          "Advanced Fineweb Dataset",
-                          "Multi-language Pipeline",
-                          "Intelligent Cleaning"
-                        ],
-                        icon: "📊"
-                      },
-                      {
-                        title: "Model Training",
-                        features: [
-                          "MoE Architecture",
-                          "Cerebras WSE",
-                          "Parameter Optimization"
-                        ],
-                        icon: "🧠"
-                      },
-                      {
-                        title: "Deployment",
-                        features: [
-                          "Efficient Storage",
-                          "Optimized API Access",
-                          "Load Balancing"
-                        ],
-                        icon: "⚡"
-                      }
-                    ].map((item) => (
+                    {technicalCards.map((item) => (
                       <div
                         key={item.title}
                         className="p-8 rounded-3xl bg-white/5 backdrop-blur-lg hover:bg-white/10 transition-all duration-500"
@@ -222,7 +240,7 @@ const App = () => {
                       Advancing Indian Language AI
                     </p>
                     <div className="flex justify-center space-x-6 mb-8">
-                      {['GitHub', 'Documentation', 'Blog', 'Contact'].map((item) => (
+                      {footerLinks.map((item) => (
                         <a
                           key={item}
                           href={`#${item.toLowerCase()}`}
