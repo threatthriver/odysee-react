@@ -4,32 +4,6 @@ import { Link, Outlet } from 'react-router-dom'
 const Layout = () => {
   const { scrollY } = useScroll()
 
-  const footerLinks = {
-    product: [
-      { name: 'Features', href: '#features' },
-      { name: 'Documentation', href: '/documentation' },
-      { name: 'API', href: '/api' },
-      { name: 'Pricing', href: '/pricing' }
-    ],
-    company: [
-      { name: 'About', href: '/about' },
-      { name: 'Blog', href: '/blog' },
-      { name: 'Careers', href: '/careers' },
-      { name: 'Contact', href: '/contact' }
-    ],
-    resources: [
-      { name: 'Community', href: '/community' },
-      { name: 'GitHub', href: 'https://github.com/intellijmind' },
-      { name: 'Discord', href: 'https://discord.gg/intellijmind' },
-      { name: 'Twitter', href: 'https://twitter.com/intellijmind' }
-    ],
-    legal: [
-      { name: 'Privacy', href: '/privacy' },
-      { name: 'Terms', href: '/terms' },
-      { name: 'License', href: '/license' }
-    ]
-  }
-
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
